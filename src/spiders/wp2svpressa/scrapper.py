@@ -9,7 +9,7 @@ import json
 from time import sleep
 from src.spiders import TextRefactorer
 
-
+PAGES = ['https://svpressa.ru/all/news/']
 # SOURCE_LANGUAGE='ru'      -jeigu rusų kalba
 # SOURCE_LANGUAGE='es'      -jeigu ispanų kalba
 SOURCE_LANGUAGE = 'ru'
@@ -23,26 +23,26 @@ IS_PAGING_EXISTS = False
 #  jeigu                    - a::attr('href')
 #  jeigu kitoks atributas   - div[atributas='reikšmė']
 # kategorijos nuoroda a::attr('href')
-CATEGORY_LINKS = ".footer__rubric-list-item a::attr('href')"
+CATEGORY_LINKS = ".b-nav__item a::attr('href')"
 # kategorijos puslapio puslapiavimo nuoroda, jeigu nėra puslapiavimo - praleisti
-CATEGORY_PAGES = ""
-# kategorijų puslapių straipsnio nnuoroda
-CATEGORY_PAGE_POSTS = ".rubric-list a::attr('href')"
+CATEGORY_PAGES = "False"
+# kategorijų puslapių straipsnio nuoroda
+CATEGORY_PAGE_POSTS = ".b-article a::attr('href')"
 # straipsnio pavadinimas
-POST_TITLE = "h1.article__title::text"
+POST_TITLE = ".b-text__title::text"
 # straipsnio kategorija
-POST_CATEGORY =  ".article__tags .article__tags-item::text"
+POST_CATEGORY =  ".b-text__rubric-link::text"
 # straipsnio nuotrauka img::attr('src')
-POST_IMAGE = ".article__announce img::attr('src')"
+POST_IMAGE = ".b-text__img img::attr('src')"
 # straipsnio turinio blokas, galimai div[atributas='reikšmė']
-POST_CONTENT = ".article__block[data-type='text']"
+POST_CONTENT = ".b-text__block p"
 
 
 
 
 class MySpider(scrapy.Spider):
     name = 'scraper'
-    start_urls = ['https://ria.ru']
+    start_urls = PAGES
 
     def __init__(self):
         super().__init__()
@@ -86,7 +86,6 @@ class MySpider(scrapy.Spider):
 
     def follow_category_page(self, response):
         category_page_posts = self.get_response_item_by_css(self.css['category_page_posts'], response)
-        print(category_page_posts)
         for category_page_post in category_page_posts:
             yield response.follow(category_page_post, self.parse_category_page_post)
 

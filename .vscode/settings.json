@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "env/bin/python"
+    "python.pythonPath": "C:\\Users\\dzenetute\\AppData\\Local\\Programs\\Python\\Python36\\python.exe",
+    "git.ignoreLimitWarning": true
 }
