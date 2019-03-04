@@ -10,7 +10,6 @@ from time import sleep
 from src.spiders import TextRefactorer
 
 
-PAGES = ['https://ria.ru']
 # SOURCE_LANGUAGE='ru'      -jeigu rusų kalba
 # SOURCE_LANGUAGE='es'      -jeigu ispanų kalba
 SOURCE_LANGUAGE = 'ru'
@@ -43,7 +42,7 @@ POST_CONTENT = ".article__block[data-type='text']"
 
 class MySpider(scrapy.Spider):
     name = 'scraper'
-    start_urls = PAGES
+    start_urls = ['https://knocker.eu/post-sitemap.xml']
 
     def __init__(self):
         super().__init__()
@@ -107,6 +106,7 @@ class MySpider(scrapy.Spider):
             'title': title,
             'post_slug': post_slug,
             'image_src': image_src,
+            'image_alt': title,
             'post_content': content
         }
 
@@ -117,7 +117,7 @@ class MySpider(scrapy.Spider):
         return response.css(css).extract_first()
 
     def get_response_content_by_css(self, css, response):
-        content_strings = response.css(css).extract()
+        content_strings = response.css("css").extract()
         content_strings = content_strings[:-1]
         content = ''.join(content_strings)
         content = self.refactorer.translate_string(content)

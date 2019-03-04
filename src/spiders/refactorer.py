@@ -1,14 +1,12 @@
 import re
-from googletrans import Translator
+from translate import Translator
 from bs4 import BeautifulSoup
 from slugify import slugify
 import urllib.request as urllib
 
 class TextRefactorer():
     def __init__(self, source_language, destination_language):
-        self.translator = Translator()
-        self.source_language = source_language
-        self.destination_language = destination_language
+        self.translator = Translator(to_lang=destination_language, from_lang=source_language, provider='microsoft', secret_access_key='cf0e74ec363149678a101dc4dad90b5a')
 
     def strip_anchors(self, data):
         p = re.compile(r'</?a.*?>')
@@ -43,13 +41,13 @@ class TextRefactorer():
         data = self.refactor_em_tag(data)
         data = self.refactor_strong_tag(data)
         data = self.refactor_span(data)
-        data = self.strip_braces(data)
         data = self.strip_tags(data)
+        data = self.strip_braces(data)
         return data
 
     def translate_string(self, data):
         data = self.remove_bad_content(data)
-        return self.translator.translate(data, src=self.source_language, dest=self.destination_language).text
+        return self.translator.translate(data)
 
     def get_soup(self, url):
         return BeautifulSoup(urllib.urlopen(urllib.Request(url, headers={'User-Agent': "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"
