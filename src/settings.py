@@ -4,5 +4,5 @@ FEED_EXPORT_ENCODING = 'utf-8'
 DOWNLOAD_DELAY = 0.25
 
 # FEED_EXPORTERS = {
-#     'xml': 'postsScrapers.exporters.exporters.MyXmlExportPipeline'
+#     'xml': 'src.exporters.exporters.MyXmlExportPipeline'
 # }

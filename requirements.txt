@@ -1,0 +1,5 @@
+python-slugify
+googletrans
+translate
+scrapy
+beautifulsoup4
