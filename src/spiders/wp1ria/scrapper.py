@@ -12,7 +12,7 @@ pages = ["https://ria.ru"]
 # source_language='es'      -jeigu ispanų kalba
 source_language = "ru"
 # destination_language neliečiam
-destination_language = "en"
+destination_language = "lt"
 #  self.is_paging_exists = False    -jeigu nėra puslapiavimo
 #  self.is_paging_exists = True     -jeigu yra
 is_paging_exists = False
