@@ -12,7 +12,7 @@ pages = ["https://www.pravda.ru/"]
 # SOURCE_LANGUAGE='es'      -jeigu ispanų kalba
 source_language = "ru"
 # DESTINATION_LANGUAGE neliečiam
-destination_language = "en"
+destination_language = "lt"
 #  self.is_paging_exists = False    -jeigu nėra puslapiavimo
 #  self.is_paging_exists = True     -jeigu yra
 is_paging_exists = False
@@ -37,7 +37,7 @@ post_content = ".article  p"
 
 
 current_time = datetime.now().strftime("%Y-%m-%d")
-FEED_URI = f"{current_time}_posts.csv"
+FEED_URI = f"{current_time}_{destination_language}_posts.csv"
 settings = get_project_settings()
 settings.update({"FEED_URI": FEED_URI})
 if os.path.isfile(FEED_URI):

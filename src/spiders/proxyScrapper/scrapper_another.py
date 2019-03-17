@@ -15,21 +15,20 @@ class MySpider(scrapy.Spider):
 
     def __init__(self):
         super().__init__()
-        self.start_urls = ['https://www.sslproxies.org/']
+        self.start_urls = ['http://spys.one/proxies/']
 
     def parse(self, response):
-        ip_adresses = response.css("tbody tr td:nth-child(1)::text").extract()
+        proxies = response.css('table:nth-of-type(2) tr:nth-of-type(4) td table tr td:nth-of-type(1) .spy14::text').extract()[1:]
+
         ports = response.css("tbody tr td:nth-child(2)::text").extract()
-        print(ip_adresses, ports)
-        for count in range(len(ip_adresses)):
-            proxy = f"{ip_adresses[count]}:{ports[count]}"
+        for proxy in range(10):
             yield {
                 "proxy": proxy,
             }
 
 
 current_time = datetime.now().strftime("%Y-%m-%d")
-FEED_URI = f"{current_time}_posts.csv"
+FEED_URI = f"another_proxies.csv"
 settings = get_project_settings()
 settings.update({"FEED_URI": FEED_URI})
 if os.path.isfile(FEED_URI):
