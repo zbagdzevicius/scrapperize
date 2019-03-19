@@ -1,3 +1,4 @@
+scrapy.cfg
 setup.py
 scrapperize/__init__.py
 scrapperize/settings.py

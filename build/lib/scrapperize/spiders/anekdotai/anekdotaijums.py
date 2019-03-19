@@ -19,6 +19,7 @@ class MySpider(scrapy.Spider):
     for x in range(1, 200):
         start_urls.append(
             f'http://www.anekdotaijums.lt/geriausi-anekdotai?page={x}')
+        break
 
     def __init__(self):
         super().__init__()
@@ -27,6 +28,7 @@ class MySpider(scrapy.Spider):
     def parse(self, response):
         jokes = response.css(".joke-link::text").extract()
         for joke in jokes:
+            break
             yield {'joke': joke,
             'category': 'anekdotai',
             'title': joke.split(' ')[:5]}
