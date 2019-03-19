@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: scrapperize
+Version: 0.1
+Summary: scrappers
+Home-page: https://github.com/zbagdzevicius/scrapperize
+Author: Zygimantas Bagdzevicius
+Author-email: zbagdzevicius@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent

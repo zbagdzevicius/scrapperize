@@ -1,0 +1,1 @@
+from .anekdotaijums import crawl_jokes
