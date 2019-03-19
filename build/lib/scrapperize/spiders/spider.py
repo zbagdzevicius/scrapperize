@@ -2,7 +2,7 @@ import requests
 import json
 from time import sleep
 import scrapy
-from scrappers.spiders import TextRefactorer
+from scrapperize.spiders import TextRefactorer
 
 class MySpider(scrapy.Spider):
     name = "scraper"
