@@ -1,1 +1,1 @@
-from spiders import *
+from .spiders import *
