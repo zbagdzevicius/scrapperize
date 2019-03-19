@@ -20,7 +20,7 @@ setuptools.setup(
         "scrapy",
         "beautifulsoup4",
     ],
-    data_files=[("",
+    data_files=[(".",
              ["scrapy.cfg"])],
 )
 
