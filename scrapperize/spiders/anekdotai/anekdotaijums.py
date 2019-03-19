@@ -31,12 +31,12 @@ class MySpider(scrapy.Spider):
             'category': 'anekdotai',
             'title': joke.split(' ')[:5]}
 
-
-fname = f"jokes_posts.csv"
-settings = get_project_settings()
-settings.update({'FEED_URI': fname})
-if os.path.isfile(fname):
-    os.remove(fname)
-crawler = CrawlerProcess(settings)
-crawler.crawl(MySpider)
-crawler.start()
+def crawl_jokes():
+    fname = f"jokes_posts.csv"
+    settings = get_project_settings()
+    settings.update({'FEED_URI': fname})
+    if os.path.isfile(fname):
+        os.remove(fname)
+    crawler = CrawlerProcess(settings)
+    crawler.crawl(MySpider)
+    crawler.start()

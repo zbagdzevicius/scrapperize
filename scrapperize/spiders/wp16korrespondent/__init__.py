@@ -1,0 +1,1 @@
+from .scrape_news import crawl_wp16

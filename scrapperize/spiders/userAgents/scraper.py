@@ -1,6 +1,6 @@
 import json
 import scrapy
-from scrappers.spiders import TextRefactorer
+from scrapperize.spiders import TextRefactorer
 import os
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings

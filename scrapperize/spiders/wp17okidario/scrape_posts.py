@@ -36,26 +36,27 @@ post_image = "section.content img::attr('src')"
 # straipsnio turinio blokas, galimai div[atributas='reikšmė']
 post_content = "div.entry-content p"
 
-current_time = datetime.now().strftime("%Y-%m-%d")
-FEED_URI = f"{pages[0]}_{current_time}_{destination_language}.csv"
-settings = get_project_settings()
-settings.update({"FEED_URI": FEED_URI})
-if os.path.isfile(FEED_URI):
-    os.remove(FEED_URI)
-crawler = CrawlerProcess(settings=settings)
-crawler.crawl(
-    crawler_or_spidercls = MySpider,
-    pages=pages,
-    is_test_mode=is_test_mode,
-    is_paging_exists=is_paging_exists,
-    source_language=source_language,
-    destination_language=destination_language,
-    category_links=category_links,
-    category_pages=category_pages,
-    category_page_posts=category_page_posts,
-    post_title=post_title,
-    post_category=post_category,
-    post_image=post_image,
-    post_content=post_content,
-)
-crawler.start()
+def crawl_wp17():
+    current_time = datetime.now().strftime("%Y-%m-%d")
+    FEED_URI = f"{pages[0]}_{current_time}_{destination_language}.csv"
+    settings = get_project_settings()
+    settings.update({"FEED_URI": FEED_URI})
+    if os.path.isfile(FEED_URI):
+        os.remove(FEED_URI)
+    crawler = CrawlerProcess(settings=settings)
+    crawler.crawl(
+        crawler_or_spidercls = MySpider,
+        pages=pages,
+        is_test_mode=is_test_mode,
+        is_paging_exists=is_paging_exists,
+        source_language=source_language,
+        destination_language=destination_language,
+        category_links=category_links,
+        category_pages=category_pages,
+        category_page_posts=category_page_posts,
+        post_title=post_title,
+        post_category=post_category,
+        post_image=post_image,
+        post_content=post_content,
+    )
+    crawler.start()
