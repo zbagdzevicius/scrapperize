@@ -17,7 +17,7 @@ class MySpider(scrapy.Spider):
         self.start_urls = ['http://spys.one/proxies/']
 
     def parse(self, response):
-        proxies = response.css('table:nth-of-type(2) tr:nth-of-type(4) td table tr td:nth-of-type(1) .spy14::text').extract()[1:]
+        proxies = response.css('table:nth-of-type(2) tr:nth-of-type(4) td table tr td:nth-of-type(1) font').extract()[1:]
 
         ports = response.css("tbody tr td:nth-child(2)::text").extract()
         for proxy in range(10):

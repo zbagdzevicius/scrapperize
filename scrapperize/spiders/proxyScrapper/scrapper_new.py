@@ -35,4 +35,4 @@ def crawl_proxies():
     )
     crawler.start()
 
-crawl_proxies
+crawl_proxies()
