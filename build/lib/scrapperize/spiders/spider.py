@@ -4,6 +4,7 @@ from time import sleep
 import scrapy
 from scrapperize.spiders import TextRefactorer
 
+
 class MySpider(scrapy.Spider):
     name = "scraper"
 

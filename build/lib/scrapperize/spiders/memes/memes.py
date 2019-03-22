@@ -1,5 +1,5 @@
 import scrapy
-from scrapy.crawler import CrawlerProcess
+from scrapy.crawler import CrawlerProcess, CrawlerRunner
 from scrapy.utils.project import get_project_settings
 import os
 from googletrans import Translator
@@ -50,29 +50,32 @@ class MySpider(scrapy.Spider):
 CURRENT_TIME = datetime.now().strftime("%Y-%m-%d")
 
 def crawl_memes():
+    CURRENT_TIME = datetime.now().strftime("%Y-%m-%d")
     fname = f"{CURRENT_TIME}_memes.csv"
     settings = get_project_settings()
     settings.update({'FEED_URI': fname})
     if os.path.isfile(fname):
         os.remove(fname)
-    crawler = CrawlerProcess(settings)
+    # crawler = CrawlerProcess(settings)
+    # crawler.crawl(MySpider)
+    crawler = CrawlerProcess(get_project_settings())   #from Scrapy docs
     crawler.crawl(MySpider)
     crawler.start()
 
-    with open(fname, 'r') as f:
-        reader = csv.reader(f, delimiter=',')
-        title = next(reader)
+    # with open(fname, 'r') as f:
+    #     reader = csv.reader(f, delimiter=',')
+    #     title = next(reader)
 
-        lines = []
-        for line in reader:
-            image = line[1]
-            line[1] = f'{image[:-1]}.jpg'
-            lines.append(line)
+    #     lines = []
+    #     for line in reader:
+    #         image = line[1]
+    #         line[1] = f'{image[:-1]}.jpg'
+    #         lines.append(line)
 
-    with open(fname, 'w', newline='') as f:
-        writer = csv.writer(f, delimiter=',')
-        writer.writerow(title)
-        writer.writerows(lines)
+    # with open(fname, 'w', newline='') as f:
+    #     writer = csv.writer(f, delimiter=',')
+    #     writer.writerow(title)
+    #     writer.writerows(lines)
 
 def convert_csv_memes_to_json(fname):
     fname_json = f"{CURRENT_TIME}_memes.json"

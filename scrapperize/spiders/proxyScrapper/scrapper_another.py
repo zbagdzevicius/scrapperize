@@ -2,7 +2,8 @@ import requests
 import json
 from time import sleep
 import scrapy
-from scrappers.spiders import TextRefactorer
+from scrapy_splash import SplashRequest
+from scrapperize.spiders import TextRefactorer
 import os
 from datetime import datetime
 from scrapy.crawler import CrawlerProcess
@@ -15,15 +16,20 @@ class MySpider(scrapy.Spider):
     def __init__(self):
         super().__init__()
         self.start_urls = ['http://spys.one/proxies/']
+    
+    def start_requests(self):
+        for url in self.start_urls:
+            print(10*"\nGG")
+            yield SplashRequest(url, self.parse,
+                endpoint='',
+                args={'wait': 5.5},
+            )
 
     def parse(self, response):
-        proxies = response.css('table:nth-of-type(2) tr:nth-of-type(4) td table tr td:nth-of-type(1) font').extract()[1:]
-
-        ports = response.css("tbody tr td:nth-child(2)::text").extract()
-        for proxy in range(10):
-            yield {
-                "proxy": proxy,
-            }
+        proxies = response.css('.spy14::text').extract()
+        yield {
+            "ports": proxies,
+        }
 
 
 current_time = datetime.now().strftime("%Y-%m-%d")
