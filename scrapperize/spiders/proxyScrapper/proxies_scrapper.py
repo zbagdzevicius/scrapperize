@@ -4,7 +4,7 @@ from scrapperize.spiders import TextRefactorer
 import os
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
-
+from requests import get
 
 class MySpider(scrapy.Spider):
     name = "scraper"
@@ -23,6 +23,15 @@ class MySpider(scrapy.Spider):
             }
 
 
+def crawl_proxies_from_urls():
+    links = ['https://api.proxyscrape.com/?request=getproxies&proxytype=http&timeout=10000&country=all&ssl=all&anonymity=all', 'https://api.proxyscrape.com/?request=getproxies&proxytype=socks4&timeout=10000&country=all', 'https://api.proxyscrape.com/?request=getproxies&proxytype=socks5&timeout=10000&country=all']
+    responses = []
+    for link in links:
+        responses.append(str(get(link).text))
+    proxies = '\n'.join(responses)
+    return proxies
+
+
 def crawl_proxies():
     FEED_URI = f"proxies.csv"
     settings = get_project_settings()
@@ -34,5 +43,6 @@ def crawl_proxies():
         crawler_or_spidercls=MySpider,
     )
     crawler.start()
-
-crawl_proxies()
+    crawled_proxies_from_urls = crawl_proxies_from_urls()
+    with open(FEED_URI, 'a+') as file:
+        file.write('\n'+crawled_proxies_from_urls)

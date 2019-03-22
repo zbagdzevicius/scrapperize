@@ -47,5 +47,3 @@ def crawl_proxies():
         crawler_or_spidercls=MySpider,
     )
     crawler.start()
-
-crawl_proxies()

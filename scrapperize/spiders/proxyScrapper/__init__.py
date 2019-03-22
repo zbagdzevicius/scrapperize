@@ -1,1 +1,1 @@
-from .scrapper_new import crawl_proxies
+from .proxies_scrapper import crawl_proxies

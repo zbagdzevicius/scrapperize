@@ -31,15 +31,15 @@ class MySpider(scrapy.Spider):
             "ports": proxies,
         }
 
-
-current_time = datetime.now().strftime("%Y-%m-%d")
-FEED_URI = f"another_proxies.csv"
-settings = get_project_settings()
-settings.update({"FEED_URI": FEED_URI})
-if os.path.isfile(FEED_URI):
-    os.remove(FEED_URI)
-crawler = CrawlerProcess(settings=settings)
-crawler.crawl(
-    crawler_or_spidercls=MySpider,
-)
-crawler.start()
+def crawl_other_proxies():
+    current_time = datetime.now().strftime("%Y-%m-%d")
+    FEED_URI = f"another_proxies.csv"
+    settings = get_project_settings()
+    settings.update({"FEED_URI": FEED_URI})
+    if os.path.isfile(FEED_URI):
+        os.remove(FEED_URI)
+    crawler = CrawlerProcess(settings=settings)
+    crawler.crawl(
+        crawler_or_spidercls=MySpider,
+    )
+    crawler.start()
