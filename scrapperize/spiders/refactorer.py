@@ -6,7 +6,7 @@ import urllib.request as urllib
 
 class TextRefactorer():
     def __init__(self, source_language, destination_language):
-        self.translator = Translator(to_lang=destination_language, from_lang=source_language, provider='microsoft', secret_access_key='cf0e74ec363149678a101dc4dad90b5a')
+        self.translator = Translator(to_lang=destination_language, from_lang=source_language, provider='microsoft', secret_access_key='8d9718e3499d479fb5cfee8e17e6f0d9')
 
     def strip_anchors(self, data):
         p = re.compile(r'</?a.*?>')
