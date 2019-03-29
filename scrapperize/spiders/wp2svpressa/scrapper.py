@@ -61,3 +61,5 @@ def crawl_wp2():
         post_content=post_content,
     )
     crawler.start()
+
+crawl_wp2()
