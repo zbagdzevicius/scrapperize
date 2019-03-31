@@ -7,6 +7,7 @@ from scrapy.utils.project import get_project_settings
 from requests import get
 import asyncio
 from proxybroker import Broker
+from csv import reader
 
 class MySpider(scrapy.Spider):
     name = "scraper"
@@ -31,6 +32,19 @@ def crawl_proxies_from_urls():
     for link in links:
         responses.append(str(get(link).text))
     proxies = '\n'.join(responses)
+    return proxies
+
+def crawl_proxies_from_urls_with_csv_format():
+    link = 'http://www.thebigproxylist.com/members/proxy-api.php?output=all&user=list&pass=8a544b2637e7a45d1536e34680e11adf'
+    data = str(get(link).text).split('\n')
+    csv_data = reader(data)
+    proxies = []
+    for csv_data_line in list(csv_data):
+        try:
+            proxies.append(csv_data_line[0])
+        except:
+            pass
+    proxies = '\n'.join(proxies)
     return proxies
 
 def crawl_proxies_from_proxybroker():

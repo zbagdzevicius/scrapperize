@@ -19,6 +19,7 @@ setuptools.setup(
         "translate",
         "scrapy",
         "beautifulsoup4",
+        "proxybroker"
     ],
     data_files=[(".",
              ["scrapy.cfg"])],

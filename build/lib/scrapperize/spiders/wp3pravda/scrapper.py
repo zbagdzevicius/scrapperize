@@ -60,5 +60,3 @@ def crawl_wp3():
         post_content=post_content,
     )
     crawler.start()
-
-crawl_wp3()
