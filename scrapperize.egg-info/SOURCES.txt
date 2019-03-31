@@ -21,6 +21,7 @@ scrapperize/spiders/proxyScrapper/__init__.py
 scrapperize/spiders/proxyScrapper/proxies_scrapper.py
 scrapperize/spiders/proxyScrapper/scrapper_another.py
 scrapperize/spiders/proxyScrapper/scrapper_free_proxy_list.py
+scrapperize/spiders/proxyScrapper/selenium_scrapper.py
 scrapperize/spiders/userAgents/__init__.py
 scrapperize/spiders/userAgents/scraper.py
 scrapperize/spiders/wp14bbc/__init__.py
