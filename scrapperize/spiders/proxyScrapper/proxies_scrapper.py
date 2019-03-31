@@ -5,6 +5,8 @@ import os
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from requests import get
+import asyncio
+from proxybroker import Broker
 
 class MySpider(scrapy.Spider):
     name = "scraper"
@@ -31,6 +33,27 @@ def crawl_proxies_from_urls():
     proxies = '\n'.join(responses)
     return proxies
 
+def crawl_proxies_from_proxybroker():
+    async def show(proxies):
+        while True:
+            proxy = await proxies.get()
+            if proxy is None: break
+
+    proxies = asyncio.Queue()
+    broker = Broker(proxies)
+    tasks = asyncio.gather(
+        broker.find(types=['HTTP', 'HTTPS'], limit=1000000),
+        show(proxies))
+
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(tasks)
+    proxy_list = []
+    for key, value in broker.unique_proxies.items():
+        proxy = f'{key[0]}:{key[1]}'
+        proxy_list.append(proxy)
+    proxies = '\n'.join(proxy_list)
+    return proxies
+
 
 def crawl_proxies():
     FEED_URI = f"proxies.csv"
@@ -44,5 +67,9 @@ def crawl_proxies():
     )
     crawler.start()
     crawled_proxies_from_urls = crawl_proxies_from_urls()
+    crawled_proxies_from_proxy_broker = crawl_proxies_from_proxybroker()
     with open(FEED_URI, 'a+') as file:
         file.write('\n'+crawled_proxies_from_urls)
+        file.write('\n'+crawled_proxies_from_proxy_broker)
+        
+            

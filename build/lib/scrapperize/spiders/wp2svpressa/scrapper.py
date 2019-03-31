@@ -13,7 +13,7 @@ pages = ['https://svpressa.ru/']
 # SOURCE_LANGUAGE='es'      -jeigu ispanų kalba
 source_language = 'ru'
 # DESTINATION_LANGUAGE neliečiam
-destination_language='en'
+destination_language='lt'
 #  self.is_paging_exists = False    -jeigu nėra puslapiavimo
 #  self.is_paging_exists = True     -jeigu yra
 is_paging_exists = False
@@ -61,3 +61,5 @@ def crawl_wp2():
         post_content=post_content,
     )
     crawler.start()
+
+crawl_wp2()

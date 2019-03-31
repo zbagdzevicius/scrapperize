@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="scrapperize",
-    version="0.2",
+    version="0.3",
     author="Zygimantas Bagdzevicius",
     author_email="zbagdzevicius@gmail.com",
     description="scrappers",

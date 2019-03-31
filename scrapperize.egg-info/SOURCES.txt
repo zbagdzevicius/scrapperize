@@ -18,7 +18,6 @@ scrapperize/spiders/memes/__init__.py
 scrapperize/spiders/memes/csv_to_json_junks.py
 scrapperize/spiders/memes/memes.py
 scrapperize/spiders/proxyScrapper/__init__.py
-scrapperize/spiders/proxyScrapper/download_proxies.py
 scrapperize/spiders/proxyScrapper/proxies_scrapper.py
 scrapperize/spiders/proxyScrapper/scrapper_another.py
 scrapperize/spiders/proxyScrapper/scrapper_free_proxy_list.py
