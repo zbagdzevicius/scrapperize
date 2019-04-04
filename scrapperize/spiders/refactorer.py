@@ -14,7 +14,7 @@ class TextRefactorer:
                 to_lang=destination_language,
                 from_lang=source_language,
                 provider="microsoft",
-                secret_access_key="8d9718e3499d479fb5cfee8e17e6f0d9",
+                secret_access_key="cf0e74ec363149678a101dc4dad90b5a",
             )
         if translator == "google":
             self.to_lang = destination_language
