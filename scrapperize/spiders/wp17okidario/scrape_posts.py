@@ -11,9 +11,9 @@ is_test_mode = False
 pages = ['https://okdiario.com/']
 # source_language='ru'      -jeigu rusų kalba
 # source_language='es'      -jeigu ispanų kalba
-source_language = "en"
+source_language = "es"
 # destination_language neliečiam
-destination_language = "lt"
+destination_language = "en"
 #  self.is_paging_exists = False    -jeigu nėra puslapiavimo
 #  self.is_paging_exists = True     -jeigu yra
 is_paging_exists = True
@@ -38,7 +38,7 @@ post_content = "div.entry-content p"
 
 def crawl_wp17():
     current_time = datetime.now().strftime("%Y-%m-%d")
-    FEED_URI = f"{pages[0]}_{current_time}_{destination_language}.csv"
+    FEED_URI = f"wp17_{current_time}_{destination_language}.csv"
     settings = get_project_settings()
     settings.update({"FEED_URI": FEED_URI})
     if os.path.isfile(FEED_URI):
