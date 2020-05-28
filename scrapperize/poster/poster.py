@@ -12,8 +12,8 @@ class CustomTransport(Transport):
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
 
 
-username = 'knocker'
-password = 'Lopukas10@'
+username = 'WORDPRESS_USERNAME'
+password = 'WORDPRESS_PASSWORD'
 wp = Client('http://rehorned.com/xmlrpc.php', username=username,
             password=password)
 post = WordPressPost()
