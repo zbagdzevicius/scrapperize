@@ -4,3 +4,4 @@ translate
 scrapy
 beautifulsoup4
 proxybroker
+httpx>=0.23.0 # not directly required, pinned by Snyk to avoid a vulnerability
